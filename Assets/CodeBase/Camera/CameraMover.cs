@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CodeBase.Camera
 {
-    public class Mover : MonoBehaviour
+    public class CameraMover : MonoBehaviour
     {
         private IInputService _inputService;
 
@@ -13,6 +13,11 @@ namespace CodeBase.Camera
         [SerializeField]
         private float _speed = 5f;
 
+        private void Awake()
+        {
+            _inputService = Game.Instance.InputService;
+        }
+
         private void Update()
         {
             Move();
@@ -20,11 +25,6 @@ namespace CodeBase.Camera
 
         private void OnEnable()
         {
-            if (_inputService == null)
-            {
-                _inputService = Game.Instance.InputService;
-            }
-
             _inputService.MoveInputChanged += OnMove;
         }
 

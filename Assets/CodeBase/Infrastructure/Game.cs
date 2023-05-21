@@ -1,4 +1,6 @@
-﻿using CodeBase.Infrastructure.Input;
+﻿using CodeBase.Enemies;
+using CodeBase.Infrastructure.Input;
+using CodeBase.Infrastructure.StaticData;
 
 namespace CodeBase.Infrastructure
 {
@@ -7,6 +9,10 @@ namespace CodeBase.Infrastructure
         private static Game _instance;
 
         public IInputService InputService { get; private set; }
+
+        public IStaticDataService StaticDataService { get; private set; }
+
+        public IBotFactory BotFactory { get; private set; }
 
         public static Game Instance
         {
@@ -22,7 +28,18 @@ namespace CodeBase.Infrastructure
 
         public Game()
         {
-            InputService = new InputService();
+            CreateInputService(); 
+            CreateStaticDataService();
+            
+            BotFactory = new BotFactory(StaticDataService);
+        }
+
+        private void CreateInputService() => InputService = new InputService();
+
+        private void CreateStaticDataService()
+        {
+            StaticDataService = new StaticDataService();
+            StaticDataService.LoadBotData();
         }
     }
 }
