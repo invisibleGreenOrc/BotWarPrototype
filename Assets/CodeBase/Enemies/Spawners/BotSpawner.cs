@@ -8,11 +8,16 @@ namespace CodeBase.Enemies.Spawners
     {
         private IBotFactory _botFactory;
 
+        [SerializeField]
         private BotType _botType;
+
+        [SerializeField]
+        private Material _material;
 
         private void Awake()
         {
             _botFactory = Game.Instance.BotFactory;
+            GetComponent<MeshRenderer>().material = _material;
         }
 
         private void Start()
@@ -22,9 +27,9 @@ namespace CodeBase.Enemies.Spawners
 
         private IEnumerator Spawn()
         {
-            _botFactory.CreateBot(_botType, transform);
+            _botFactory.CreateBot(_botType, _material, transform);
             yield return new WaitForSeconds(2);
-            _botFactory.CreateBot(_botType, transform);
+            _botFactory.CreateBot(_botType, _material, transform);
         }
     }
 }

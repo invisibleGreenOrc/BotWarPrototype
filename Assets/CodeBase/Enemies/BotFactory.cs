@@ -12,13 +12,15 @@ namespace CodeBase.Enemies
             _staticDataService = staticDataService;
         }
 
-        public GameObject CreateBot(BotType botType, Transform parent)
+        public GameObject CreateBot(BotType botType, Material material, Transform parent)
         {
             BotStaticData botData = _staticDataService.GetBotData(botType);
             GameObject botObject = Object.Instantiate(botData.Prefab, parent.position, Quaternion.identity, parent);
-            
+
             Bot bot = botObject.GetComponent<Bot>();
             bot.Type = botType;
+
+            botObject.GetComponentInChildren<MeshRenderer>().material = material;
 
             return botObject;
         }

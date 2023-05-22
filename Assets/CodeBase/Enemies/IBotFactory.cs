@@ -4,6 +4,6 @@ namespace CodeBase.Enemies
 {
     public interface IBotFactory
     {
-        GameObject CreateBot(BotType botType, Transform parent);
+        GameObject CreateBot(BotType botType, Material material, Transform parent);
     }
 }
