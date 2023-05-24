@@ -1,5 +1,4 @@
-﻿using CodeBase.Infrastructure;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace CodeBase.Enemies.Spawners
@@ -16,7 +15,7 @@ namespace CodeBase.Enemies.Spawners
 
         private void Awake()
         {
-            _botFactory = Game.Instance.BotFactory;
+            _botFactory = new BotFactory();
             GetComponent<MeshRenderer>().material = _material;
         }
 
@@ -28,7 +27,7 @@ namespace CodeBase.Enemies.Spawners
         private IEnumerator Spawn()
         {
             _botFactory.CreateBot(_botType, _material, transform);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3);
             _botFactory.CreateBot(_botType, _material, transform);
         }
     }

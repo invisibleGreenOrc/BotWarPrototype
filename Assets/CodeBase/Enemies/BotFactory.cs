@@ -1,4 +1,6 @@
-﻿using CodeBase.Infrastructure.StaticData;
+﻿using CodeBase.Infrastructure;
+using CodeBase.Infrastructure.StaticData;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CodeBase.Enemies
@@ -7,15 +9,17 @@ namespace CodeBase.Enemies
     {
         private readonly IStaticDataService _staticDataService;
 
-        public BotFactory(IStaticDataService staticDataService)
+        private Dictionary<BotType, BotData> _botsData;
+
+        public BotFactory()
         {
-            _staticDataService = staticDataService;
+            _staticDataService = Game.Instance.StaticDataService;
+            _botsData = _staticDataService.GetBotData();
         }
 
         public GameObject CreateBot(BotType botType, Material material, Transform parent)
         {
-            BotStaticData botData = _staticDataService.GetBotData(botType);
-            GameObject botObject = Object.Instantiate(botData.Prefab, parent.position, Quaternion.identity, parent);
+            GameObject botObject = Object.Instantiate(_botsData[botType].Prefab, parent.position, Quaternion.identity, parent);
 
             Bot bot = botObject.GetComponent<Bot>();
             bot.Type = botType;

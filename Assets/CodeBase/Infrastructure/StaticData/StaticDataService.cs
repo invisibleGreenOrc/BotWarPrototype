@@ -7,21 +7,26 @@ namespace CodeBase.Infrastructure.StaticData
 {
     public class StaticDataService : IStaticDataService
     {
-        private Dictionary<BotType, BotStaticData> _botsData;
+        private Dictionary<BotType, BotData> _botsData;
 
         public void LoadBotData()
         {
-            _botsData = Resources.LoadAll<BotStaticData>("StaticData/Bots").ToDictionary(x => x.BotType, x => x);
+            _botsData = Resources.LoadAll<BotStaticData>("StaticData/Bots").ToDictionary(x => x.Data.BotType, x => x.Data);
         }
 
-        public BotStaticData GetBotData(BotType botType)
+        public BotData GetBotData(BotType botType)
         {
-            if (_botsData.TryGetValue(botType, out BotStaticData botData))
+            if (_botsData.TryGetValue(botType, out BotData botData))
             {
                 return botData;
             }
 
-            return null;
+            return new BotData();
+        }
+
+        public Dictionary<BotType, BotData> GetBotData()
+        {
+            return new Dictionary<BotType, BotData>(_botsData);
         }
     }
 }

@@ -30,8 +30,6 @@ namespace CodeBase.Infrastructure
         {
             CreateInputService(); 
             CreateStaticDataService();
-            
-            BotFactory = new BotFactory(StaticDataService);
         }
 
         private void CreateInputService() => InputService = new InputService();
