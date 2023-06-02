@@ -1,5 +1,6 @@
 ﻿using CodeBase.Enemies;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace CodeBase.Infrastructure.StaticData
 {
@@ -7,8 +8,10 @@ namespace CodeBase.Infrastructure.StaticData
     {
         BotData GetBotData(BotType botType);
 
-        Dictionary<BotType, BotData> GetBotData();
+        Dictionary<BotType, BotData> GetBotsData();
 
-        void LoadBotData();
+        void LoadData();
+
+        Material GetPlayerMaterial(PlayerType playerType);
     }
 }

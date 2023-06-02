@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeBase.Enemies
+namespace CodeBase.Enemies.Behaviors
 {
     [RequireComponent(typeof(Mover))]
     public class Follower : MonoBehaviour

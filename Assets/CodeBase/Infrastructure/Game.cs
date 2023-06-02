@@ -37,7 +37,7 @@ namespace CodeBase.Infrastructure
         private void CreateStaticDataService()
         {
             StaticDataService = new StaticDataService();
-            StaticDataService.LoadBotData();
+            StaticDataService.LoadData();
         }
     }
 }

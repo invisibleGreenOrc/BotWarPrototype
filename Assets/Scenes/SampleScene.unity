@@ -204,8 +204,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c552e5c9f933d4c958ebba7456858b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _botType: 1
-  _material: {fileID: 2100000, guid: 0eeec1258162d8949a25a644ff2f0848, type: 2}
+  _currentBotData:
+    BotType: 0
+    HealthPoints: 0
+    MovementSpeed: 0
+    FastAttackDamage: 0
+    FastAttackChance: 0
+    SlowAttackDamage: 0
+    AttackRange: 0
+    MissChance: 0
+    CriticalAttackChance: 0
+    CriticalDamageMultiplier: 0
+    Prefab: {fileID: 0}
+  _startBotType: 0
+  _playerType: 2
 --- !u!4 &68344113
 Transform:
   m_ObjectHideFlags: 0
@@ -302,8 +314,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c552e5c9f933d4c958ebba7456858b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _botType: 0
-  _material: {fileID: 2100000, guid: 627c77c9e07b21249960e85461b191bc, type: 2}
+  _currentBotData:
+    BotType: 0
+    HealthPoints: 0
+    MovementSpeed: 0
+    FastAttackDamage: 0
+    FastAttackChance: 0
+    SlowAttackDamage: 0
+    AttackRange: 0
+    MissChance: 0
+    CriticalAttackChance: 0
+    CriticalDamageMultiplier: 0
+    Prefab: {fileID: 0}
+  _startBotType: 0
+  _playerType: 0
 --- !u!4 &252945057
 Transform:
   m_ObjectHideFlags: 0
@@ -542,8 +566,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c552e5c9f933d4c958ebba7456858b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _botType: 0
-  _material: {fileID: 2100000, guid: de264c953f20bb14b970cb24986de1b7, type: 2}
+  _currentBotData:
+    BotType: 0
+    HealthPoints: 0
+    MovementSpeed: 0
+    FastAttackDamage: 0
+    FastAttackChance: 0
+    SlowAttackDamage: 0
+    AttackRange: 0
+    MissChance: 0
+    CriticalAttackChance: 0
+    CriticalDamageMultiplier: 0
+    Prefab: {fileID: 0}
+  _startBotType: 1
+  _playerType: 0
 --- !u!4 &879543692
 Transform:
   m_ObjectHideFlags: 0
@@ -687,7 +723,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 18, z: -12}
+  m_LocalPosition: {x: 0, y: 27, z: -22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -795,7 +831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8328929074085116565, guid: f51005eecb5264b458afe2545bbc1e7d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.06
+      value: 3.17
       objectReference: {fileID: 0}
     - target: {fileID: 8328929074085116565, guid: f51005eecb5264b458afe2545bbc1e7d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -803,7 +839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8328929074085116565, guid: f51005eecb5264b458afe2545bbc1e7d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.84
+      value: 16.83
       objectReference: {fileID: 0}
     - target: {fileID: 8328929074085116565, guid: f51005eecb5264b458afe2545bbc1e7d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -836,6 +872,10 @@ PrefabInstance:
     - target: {fileID: 8328929074085116566, guid: f51005eecb5264b458afe2545bbc1e7d, type: 3}
       propertyPath: m_Name
       value: Bot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8328929074085116566, guid: f51005eecb5264b458afe2545bbc1e7d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f51005eecb5264b458afe2545bbc1e7d, type: 3}

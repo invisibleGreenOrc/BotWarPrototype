@@ -15,7 +15,7 @@ MonoBehaviour:
   Data:
     BotType: 0
     HealthPoints: 10
-    MovementSpeed: 1
+    MovementSpeed: 3
     FastAttackDamage: 1
     FastAttackChance: 0.8
     SlowAttackDamage: 3
