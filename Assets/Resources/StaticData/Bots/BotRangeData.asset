@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data:
     BotType: 1
-    HealthPoints: 7
+    HealthPoints: 50
     MovementSpeed: 3
     FastAttackDamage: 1
     FastAttackChance: 0.8
     SlowAttackDamage: 3
     AttackRange: 10
     MissChance: 0.2
-    CriticalAttackChance: 0.05
-    CriticalDamageMultiplier: 3
+    CriticalAttackChance: 0.3
+    CriticalDamageMultiplier: 4
     Prefab: {fileID: 3602711625378199161, guid: 756977e796fa1b8449a02c17881d66f9, type: 3}

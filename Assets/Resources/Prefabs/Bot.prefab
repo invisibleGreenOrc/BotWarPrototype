@@ -214,6 +214,8 @@ GameObject:
   - component: {fileID: 8136369456179579405}
   - component: {fileID: 2933099254811154864}
   - component: {fileID: 8401489903096064976}
+  - component: {fileID: 1715953117529786871}
+  - component: {fileID: 8426964910741379917}
   m_Layer: 9
   m_Name: Bot
   m_TagString: Untagged
@@ -306,7 +308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076551ae4c0726746b9aece7aa2149ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _triggerObserver: {fileID: 8607537831422154776}
   _defaultTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &8401489903096064976
 MonoBehaviour:
@@ -322,3 +323,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _triggerObserver: {fileID: 5041452398200338298}
   _attackRangeSphere: {fileID: 7707407206583377303}
+--- !u!114 &1715953117529786871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8328929074085116566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93f3a95f2146fb1489e08f17c2bcb4bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8426964910741379917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8328929074085116566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8120ddfe20395794ea2752ec8492870b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bot: {fileID: 8328929074085116564}
+  _viewRangeObserver: {fileID: 8607537831422154776}
+  _attackRangeObserver: {fileID: 5041452398200338298}
+  _follower: {fileID: 2933099254811154864}
+  _attacker: {fileID: 8401489903096064976}

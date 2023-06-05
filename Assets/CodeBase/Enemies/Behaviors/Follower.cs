@@ -8,23 +8,9 @@ namespace CodeBase.Enemies.Behaviors
         private Mover _mover;
 
         [SerializeField]
-        private TriggerObserver _triggerObserver;
-
-        [SerializeField]
         private Vector3 _defaultTarget = new(0, 0, 0);
 
         private Transform _target;
-
-        private void OnEnable()
-        {
-            _triggerObserver.ColliderEntered += OnColliderEntered;
-            //_triggerObserver.ColliderExited += OnColliderExited;
-        }
-        private void OnDisable()
-        {
-            _triggerObserver.ColliderEntered -= OnColliderEntered;
-            //_triggerObserver.ColliderExited -= OnColliderExited;
-        }
 
         private void Start()
         {
@@ -43,12 +29,9 @@ namespace CodeBase.Enemies.Behaviors
             }
         }
 
-        private void OnColliderEntered(Collider collider)
+        public void SetTarget(Transform target)
         {
-            if (_target == null)
-            {
-                _target = collider.transform;
-            }
+            _target = target;
         }
     }
 }

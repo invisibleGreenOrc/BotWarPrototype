@@ -1,4 +1,5 @@
 ﻿using CodeBase.Enemies.Behaviors;
+using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.StaticData;
 using UnityEngine;
 
@@ -6,25 +7,26 @@ namespace CodeBase.Enemies
 {
     public class BotFactory : IBotFactory
     {
-        public GameObject CreateBot(BotData botData, Material material, Transform parent)
+        private IStaticDataService _staticDataService;
+
+        public BotFactory()
+        {
+            _staticDataService = Game.Instance.StaticDataService;
+        }
+
+        public GameObject CreateBot(BotData botData, PlayerType playerType, Transform parent)
         {
             GameObject botObject = Object.Instantiate(botData.Prefab, parent.position, Quaternion.identity, parent);
 
             Bot bot = botObject.GetComponent<Bot>();
 
-            bot.Type = botData.BotType;
+            bot.Init(botData.BotType, playerType);
 
-            bot.HealthPoints = botData.HealthPoints;
+            bot.GetComponent<Health>().Init(botData.HealthPoints);
             bot.GetComponent<Mover>().SetSpeed(botData.MovementSpeed);
-            bot.FastAttackDamage = botData.FastAttackDamage;
-            bot.FastAttackChance = botData.FastAttackChance;
-            bot.SlowAttackDamage = botData.SlowAttackDamage;
-            bot.GetComponent<Attacker>().SetRange(botData.AttackRange);
-            bot.MissChance = botData.MissChance;
-            bot.CriticalAttackChance = botData.CriticalAttackChance;
-            bot.CriticalDamageMultiplier = botData.CriticalDamageMultiplier;
+            bot.GetComponent<Attacker>().Init(botData.FastAttackDamage, botData.FastAttackChance, botData.SlowAttackDamage, botData.AttackRange, botData.MissChance, botData.CriticalAttackChance, botData.CriticalDamageMultiplier);
 
-            botObject.GetComponentInChildren<MeshRenderer>().material = material;
+            botObject.GetComponentInChildren<MeshRenderer>().material = _staticDataService.GetPlayerMaterial(playerType);
 
             return botObject;
         }

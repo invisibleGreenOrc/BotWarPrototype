@@ -38,9 +38,9 @@ namespace CodeBase.Enemies.Spawners
 
         private IEnumerator Spawn()
         {
-            _botFactory.CreateBot(_currentBotData, _material, transform);
+            _botFactory.CreateBot(_currentBotData, _playerType, transform);
             yield return new WaitForSeconds(3);
-            _botFactory.CreateBot(_currentBotData, _material, transform);
+            //_botFactory.CreateBot(_currentBotData, _playerType, transform);
         }
     }
 }
