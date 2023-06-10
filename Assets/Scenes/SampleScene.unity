@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 68344111}
   - component: {fileID: 68344112}
   - component: {fileID: 68344110}
+  - component: {fileID: 68344114}
   m_Layer: 0
   m_Name: Spawner (2)
   m_TagString: Untagged
@@ -257,18 +258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c552e5c9f933d4c958ebba7456858b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentBotData:
-    BotType: 0
-    HealthPoints: 0
-    MovementSpeed: 0
-    FastAttackDamage: 0
-    FastAttackChance: 0
-    SlowAttackDamage: 0
-    AttackRange: 0
-    MissChance: 0
-    CriticalAttackChance: 0
-    CriticalDamageMultiplier: 0
-    Prefab: {fileID: 0}
   _startBotType: 1
   _playerType: 2
 --- !u!4 &68344113
@@ -286,6 +275,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &68344114
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68344109}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &82327160
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 82327161}
   - component: {fileID: 82327162}
+  - component: {fileID: 82327163}
   m_Layer: 5
   m_Name: InfoPanel
   m_TagString: Untagged
@@ -333,6 +336,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82327160}
   m_CullTransparentMesh: 1
+--- !u!114 &82327163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82327160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4519ff1e92a48e28920a178909d2e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawners:
+  - {fileID: 879543691}
+  - {fileID: 68344112}
+  - {fileID: 252945056}
+  _spawnerView: {fileID: 1891655376}
 --- !u!1 &128692481
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +653,7 @@ GameObject:
   - component: {fileID: 252945055}
   - component: {fileID: 252945056}
   - component: {fileID: 252945054}
+  - component: {fileID: 252945058}
   m_Layer: 0
   m_Name: Spawner (3)
   m_TagString: Untagged
@@ -702,19 +723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c552e5c9f933d4c958ebba7456858b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentBotData:
-    BotType: 0
-    HealthPoints: 0
-    MovementSpeed: 0
-    FastAttackDamage: 0
-    FastAttackChance: 0
-    SlowAttackDamage: 0
-    AttackRange: 0
-    MissChance: 0
-    CriticalAttackChance: 0
-    CriticalDamageMultiplier: 0
-    Prefab: {fileID: 0}
-  _startBotType: 1
+  _startBotType: 0
   _playerType: 3
 --- !u!4 &252945057
 Transform:
@@ -731,6 +740,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &252945058
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252945053}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &320282359
 GameObject:
   m_ObjectHideFlags: 0
@@ -2970,6 +2992,7 @@ GameObject:
   - component: {fileID: 879543694}
   - component: {fileID: 879543691}
   - component: {fileID: 879543693}
+  - component: {fileID: 879543695}
   m_Layer: 0
   m_Name: Spawner (1)
   m_TagString: Untagged
@@ -2989,19 +3012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c552e5c9f933d4c958ebba7456858b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentBotData:
-    BotType: 0
-    HealthPoints: 0
-    MovementSpeed: 0
-    FastAttackDamage: 0
-    FastAttackChance: 0
-    SlowAttackDamage: 0
-    AttackRange: 0
-    MissChance: 0
-    CriticalAttackChance: 0
-    CriticalDamageMultiplier: 0
-    Prefab: {fileID: 0}
-  _startBotType: 1
+  _startBotType: 0
   _playerType: 0
 --- !u!4 &879543692
 Transform:
@@ -3068,6 +3079,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &879543695
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879543690}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &896895197
 GameObject:
   m_ObjectHideFlags: 0
@@ -3309,6 +3333,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -3395,6 +3420,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_MaxRayIntersections: 1
 --- !u!1 &977376369
 GameObject:
   m_ObjectHideFlags: 0
@@ -6943,6 +6984,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1891655374}
   - component: {fileID: 1891655375}
+  - component: {fileID: 1891655376}
   m_Layer: 5
   m_Name: StatsPanel
   m_TagString: Untagged
@@ -6988,6 +7030,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891655373}
   m_CullTransparentMesh: 1
+--- !u!114 &1891655376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891655373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0508dd720c1243cd9eff379202a5280e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _botTypeInput: {fileID: 363968211}
+  _healthPointsInput: {fileID: 388387277}
+  _movementSpeedInput: {fileID: 1231691802}
+  _fastAttackDamageInput: {fileID: 787220362}
+  _fastAttackChanceInput: {fileID: 1931355328}
+  _slowAttackDamageInput: {fileID: 1941326796}
+  _attackRangeInput: {fileID: 905282455}
+  _missChanceInput: {fileID: 1919033138}
+  _criticalAttackChanceInput: {fileID: 560058439}
+  _criticalDamageMultiplierInput: {fileID: 732298126}
 --- !u!1 &1914722557
 GameObject:
   m_ObjectHideFlags: 0
