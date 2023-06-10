@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace CodeBase.Enemies.Behaviors
 {
@@ -7,19 +9,19 @@ namespace CodeBase.Enemies.Behaviors
         [SerializeField]
         private SphereCollider _attackRangeSphere;
 
-        private float _fastAttackDamage { get; set; }
+        private float _fastAttackDamage;
 
-        private float _fastAttackChance { get; set; }
+        private float _fastAttackChance;
 
-        private float _slowAttackDamage { get; set; }
+        private float _slowAttackDamage;
 
-        private float _attackRange { get; set; }
+        private float _attackRange;
 
-        private float _missChance { get; set; }
+        private float _missChance;
 
-        private float _criticalAttackChance { get; set; }
+        private float _criticalAttackChance;
 
-        private float _criticalDamageMultiplier { get; set; }
+        private float _criticalDamageMultiplier;
 
         private float _coolDown = 2f;
 
@@ -27,15 +29,22 @@ namespace CodeBase.Enemies.Behaviors
 
         private Health _target;
 
+        private void OnDisable()
+        {
+            _target = null;
+        }
+
         private void Update()
         {
-            if (_currentCoolDown <= 0 && _target != null)
-            {
-                Attack();
-            }
-            else
+            if (_currentCoolDown > 0)
             {
                 _currentCoolDown -= Time.deltaTime;
+                return;
+            }
+            
+            if (_target is not null)
+            {
+                Attack();
             }
         }
 
@@ -64,7 +73,7 @@ namespace CodeBase.Enemies.Behaviors
 
         private bool IsAttemptSuccessful(float chance)
         {
-            float randomValue = UnityEngine.Random.Range(0f, 1f);
+            float randomValue = Random.Range(0f, 1f);
 
             return randomValue <= chance;
         }
@@ -79,24 +88,25 @@ namespace CodeBase.Enemies.Behaviors
             }
 
             float damage = CalculateDamage();
+            
+            _target.TakeDamage(damage);
+        }
 
+        private float CalculateDamage()
+        {
+            float damage = _slowAttackDamage;
+            
+            if (IsAttemptSuccessful(_fastAttackChance))
+            {
+                damage = _fastAttackDamage;
+            }
+            
             if (IsCriticalHit())
             {
                 damage *= _criticalDamageMultiplier;
             }
 
-            _target.TakeDamage(damage);
-            Debug.Log(damage);
-        }
-
-        private float CalculateDamage()
-        {
-            if (IsAttemptSuccessful(_fastAttackChance))
-            {
-                return _fastAttackDamage;
-            }
-
-            return _slowAttackDamage;
+            return damage;
         }
 
         private bool IsMiss()

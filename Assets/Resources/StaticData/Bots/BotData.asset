@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data:
     BotType: 0
-    HealthPoints: 50
+    HealthPoints: 10
     MovementSpeed: 3
     FastAttackDamage: 1
     FastAttackChance: 0.8

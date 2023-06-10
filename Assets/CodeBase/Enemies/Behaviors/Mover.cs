@@ -5,7 +5,7 @@ namespace CodeBase.Enemies.Behaviors
     public class Mover : MonoBehaviour
     {
         [SerializeField]
-        private float _movementSpeed = 5;
+        private float _movementSpeed = 5f;
 
         public void Move(Vector3 target)
         {

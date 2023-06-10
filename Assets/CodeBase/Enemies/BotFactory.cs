@@ -7,7 +7,7 @@ namespace CodeBase.Enemies
 {
     public class BotFactory : IBotFactory
     {
-        private IStaticDataService _staticDataService;
+        private readonly IStaticDataService _staticDataService;
 
         public BotFactory()
         {
@@ -20,7 +20,7 @@ namespace CodeBase.Enemies
 
             Bot bot = botObject.GetComponent<Bot>();
 
-            bot.Init(botData.BotType, playerType);
+            bot.Init(playerType);
 
             bot.GetComponent<Health>().Init(botData.HealthPoints);
             bot.GetComponent<Mover>().SetSpeed(botData.MovementSpeed);

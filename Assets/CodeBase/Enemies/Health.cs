@@ -1,28 +1,28 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace CodeBase.Enemies
 {
     public class Health : MonoBehaviour
     {
-        [SerializeField]
-        private float _healthPoints;
+        [field: SerializeField]
+        public float CurrentHP { get; private set; }
 
-        private float _maxHealthPoints;
+        private float _maxHP;
+
+        public event Action HealthChanged;
 
         public void Init(float maxHeathPoints)
         {
-            _maxHealthPoints = maxHeathPoints;
-            _healthPoints = _maxHealthPoints;
+            _maxHP = maxHeathPoints;
+            CurrentHP = _maxHP;
         }
 
         public void TakeDamage(float damage)
         {
-            _healthPoints -= damage;
+            CurrentHP -= damage;
 
-            if (_healthPoints <= 0)
-            {
-                gameObject.SetActive(false);
-            }
+            HealthChanged?.Invoke();
         }
     }
 }

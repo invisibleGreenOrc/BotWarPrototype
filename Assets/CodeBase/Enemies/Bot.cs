@@ -1,17 +1,38 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace CodeBase.Enemies
 {
     public class Bot : MonoBehaviour
     {
-        public BotType BotType { get; private set; }
-
+        public bool IsDead { get; private set; } = false;
+        
+        [SerializeField]
+        private Health _health;
+        
         public PlayerType PlayerType { get; private set; }
 
-        public void Init(BotType botType, PlayerType playerType)
+        public event Action<Bot> Died;
+
+        public void Init(PlayerType playerType)
         {
-            BotType = botType;
             PlayerType = playerType;
+            _health.HealthChanged += OnHealthChanged;
+        }
+
+        private void OnHealthChanged()
+        {
+            if (_health.CurrentHP <= 0 && IsDead == false)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            IsDead = true;
+            Died?.Invoke(this);
+            Destroy(gameObject);
         }
     }
 }

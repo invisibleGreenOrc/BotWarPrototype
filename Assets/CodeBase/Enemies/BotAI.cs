@@ -1,5 +1,6 @@
 ﻿using CodeBase.Enemies.Behaviors;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace CodeBase.Enemies
@@ -23,7 +24,7 @@ namespace CodeBase.Enemies
 
         private HashSet<Bot> _visibleEnemies = new();
 
-        private HashSet<Health> _enemiesInAttackZone = new();
+        private HashSet<Bot> _enemiesInAttackZone = new();
 
         private Bot _currentTarget;
 
@@ -31,12 +32,74 @@ namespace CodeBase.Enemies
         {
             _viewRangeObserver.ColliderEntered += OnColliderEnteredVisibilityZone;
             _attackRangeObserver.ColliderEntered += OnColliderEnteredAttackZone;
+            _bot.Died += OnDied;
         }
 
         private void OnDisable()
         {
             _viewRangeObserver.ColliderEntered -= OnColliderExitVisibilityZone;
             _attackRangeObserver.ColliderEntered -= OnColliderExitAttackZone;
+            _bot.Died -= OnDied;
+        }
+
+        private void OnDied(Bot obj)
+        {
+            _follower.enabled = false;
+            _attacker.enabled = false;
+            _currentTarget = null;
+            enabled = false;
+        }
+
+        private void OnEnemyDied(Bot enemy)
+        {
+            _visibleEnemies.Remove(enemy);
+            _enemiesInAttackZone.Remove(enemy);
+            
+            if (_currentTarget == enemy)
+            {
+                _currentTarget = null;
+                FindNewTarget();
+            }
+        }
+        
+        private void FindNewTarget()
+        {
+            if (_enemiesInAttackZone.FirstOrDefault() is { } targetToAttack)
+            {
+                _currentTarget = targetToAttack;
+                StartAttacking(targetToAttack);
+                return;
+            }
+
+            if (_visibleEnemies.FirstOrDefault() is { } targetToFollow)
+            {
+                _currentTarget = targetToFollow;
+            }
+            
+            StartFollowing();
+        }
+
+        private void StartFollowing()
+        {
+            _attacker.enabled = false;
+
+            if (_currentTarget is null)
+            {
+                _follower.RemoveTarget();
+            }
+            else
+            {
+                _follower.SetTarget(_currentTarget.transform);
+            }
+            
+            _follower.enabled = true;
+        }
+
+        private void StartAttacking(Bot target)
+        {
+            _follower.enabled = false;
+            _attacker.enabled = true;
+            _attacker.SetTarget(target.GetComponent<Health>());
         }
 
         private void OnColliderEnteredVisibilityZone(Collider collider)
@@ -44,12 +107,13 @@ namespace CodeBase.Enemies
             if (collider.TryGetComponent(out Bot bot) && bot.PlayerType != _bot.PlayerType)
             {
                 _visibleEnemies.Add(bot);
+                bot.Died += OnEnemyDied;
 
                 if (_currentTarget == null)
                 {
                     _currentTarget = bot;
 
-                    _follower.SetTarget(bot.transform);
+                    StartFollowing();
                 }
             }
         }
@@ -59,6 +123,13 @@ namespace CodeBase.Enemies
             if (collider.TryGetComponent(out Bot bot) && bot.PlayerType != _bot.PlayerType)
             {
                 _visibleEnemies.Remove(bot);
+                bot.Died -= OnEnemyDied;
+
+                if (_currentTarget == bot)
+                {
+                    _currentTarget = null;
+                    FindNewTarget();
+                }
             }
         }
 
@@ -66,12 +137,10 @@ namespace CodeBase.Enemies
         {
             if (collider.TryGetComponent(out Bot bot) && bot.PlayerType != _bot.PlayerType)
             {
-                Health target = bot.GetComponent<Health>();
-
-                _enemiesInAttackZone.Add(target);
-
-                _attacker.SetTarget(target);
-                _follower.enabled = false;
+                _enemiesInAttackZone.Add(bot);
+                bot.Died += OnEnemyDied;
+                
+                FindNewTarget();
             }
         }
 
@@ -79,7 +148,14 @@ namespace CodeBase.Enemies
         {
             if (collider.TryGetComponent(out Bot bot) && bot.PlayerType != _bot.PlayerType)
             {
-                _enemiesInAttackZone.Remove(bot.GetComponent<Health>());
+                _enemiesInAttackZone.Remove(bot);
+                bot.Died -= OnEnemyDied;
+                
+                if (_currentTarget == bot)
+                {
+                    _currentTarget = null;
+                    FindNewTarget();
+                }
             }
         }
     }

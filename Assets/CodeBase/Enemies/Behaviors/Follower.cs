@@ -19,7 +19,7 @@ namespace CodeBase.Enemies.Behaviors
 
         private void Update()
         {
-            if (_target == null)
+            if (_target is null)
             {
                 _mover.Move(_defaultTarget);
             }
@@ -32,6 +32,11 @@ namespace CodeBase.Enemies.Behaviors
         public void SetTarget(Transform target)
         {
             _target = target;
+        }
+
+        public void RemoveTarget()
+        {
+            _target = null;
         }
     }
 }

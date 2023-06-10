@@ -10,14 +10,11 @@ namespace CodeBase.Enemies.Spawners
     {
         private IBotFactory _botFactory;
 
-        [SerializeField]
-        private BotData _currentBotData;
+        [SerializeField] private BotData _currentBotData;
 
-        [SerializeField]
-        private BotType _startBotType;
+        [SerializeField] private BotType _startBotType;
 
-        [SerializeField]
-        private PlayerType _playerType;
+        [SerializeField] private PlayerType _playerType;
 
         private Material _material;
 
@@ -38,9 +35,11 @@ namespace CodeBase.Enemies.Spawners
 
         private IEnumerator Spawn()
         {
-            _botFactory.CreateBot(_currentBotData, _playerType, transform);
-            yield return new WaitForSeconds(3);
-            //_botFactory.CreateBot(_currentBotData, _playerType, transform);
+            for (int i = 0; i < 10; i++)
+            {
+                _botFactory.CreateBot(_currentBotData, _playerType, transform);
+                yield return new WaitForSeconds(1);
+            }
         }
     }
 }
